@@ -3,6 +3,8 @@ A game/experiment written in nodejs and using socket.io and Three.js
 
 Current status: *Very basic working prototype*
 
+Live demo: http://omarshehata.me:2095/
+
 How to run
 ==========
 Make sure you have Nodejs installed. Run:
