@@ -9,6 +9,42 @@ $(function(){
     init();
     animate();
 
+    var circleArray = []
+    var sphereArray = []
+    function GetPosition(circle){
+    	//Transforms from the 2d plane to the 3d plane
+    	var x = circle.x - 400;//Minus half the assumed screen height and width in the 2d plane
+    	var y = circle.y - 300;//Becuase we want the 3d viewer to see thigns in the center
+    	x /= 10;
+    	y /= 10;
+    	return {x:x,y:y}
+    }
+
+    function CreateSpheres(){
+
+    	for(var i=0;i<circleArray.length;i++){
+    		var circle = circleArray[i]
+    		var geometry = new THREE.SphereGeometry( 5, 32, 32 );
+    		var color = 0xff0000;
+    		if(circle.type == "red") color = 0xffff00;
+			var material = new THREE.MeshBasicMaterial( {color: color} );
+			var sphere = new THREE.Mesh( geometry, material );
+			scene.add( sphere );
+			sphere.position.x = GetPosition(circle).x;
+			sphere.position.z = GetPosition(circle).y;
+			sphere.position.y = 5;
+			sphereArray.push(sphere)
+    	}
+    }
+    function UpdateSpheres(){
+    	for(var i=0;i<sphereArray.length;i++){
+    		var circle = circleArray[i];
+    		var sphere = sphereArray[i];
+    		sphere.position.x = GetPosition(circle).x;
+			sphere.position.z = GetPosition(circle).y;
+    	}
+    }
+
     function init() {
       renderer = new THREE.WebGLRenderer();
       element = renderer.domElement;
@@ -127,6 +163,11 @@ $(function(){
 	socket.on('circle-array', function(msg){
 		circleArray = JSON.parse(msg);
 		//Update circle positions
+		if(sphereArray.length == 0){
+			CreateSpheres()
+		} else {
+			UpdateSpheres()
+		}
 	});
 	
 })
