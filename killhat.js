@@ -45,12 +45,23 @@ gameloop.setGameLoop(function(delta) {
       c.randTimer = Math.random() * c.timerMax;
       c.targetAngle = Math.random() * Math.PI * 2;
     }
-    c.angle += (c.targetAngle - c.angle) * delta * 1;
+    //c.angle += (c.targetAngle - c.angle) * delta * 1;
     //Asteroids-style wrapping around screen
-    if(c.x > 800+radius) c.x = -radius; 
-    if(c.x < -radius) c.x = 800+radius;
-    if(c.y < -radius) c.y = 600+radius;
-    if(c.y > 600+radius) c.y = -radius;
+    // if(c.x > 800+radius) c.x = -radius; 
+    // if(c.x < -radius) c.x = 800+radius;
+    // if(c.y < -radius) c.y = 600+radius;
+    // if(c.y > 600+radius) c.y = -radius;
+    //Just hard boundaries
+    if(c.x > 800+radius) {c.x = 800+radius; c.angle += Math.PI * Math.random();}
+    if(c.x < -radius) {c.x = -radius; c.angle += Math.PI * Math.random();}
+    if(c.y < -radius) {c.y = -radius; c.angle += Math.PI * Math.random();}
+    if(c.y > 600+radius) {c.y = 600+radius; c.angle += Math.PI * Math.random();}
+
+    //Force second circle to follow first circle
+    // if(i == 1){
+    //   c.x = circleArray[0].x - 10;
+    //   c.y = circleArray[0].y;
+    // }
   }
   //Broadcast the positions of the circles to everyone
   io.emit("circle-array",JSON.stringify(circleArray))

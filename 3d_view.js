@@ -112,6 +112,21 @@ $(function(){
 
       window.addEventListener('resize', resize, false);
       setTimeout(resize, 1);
+
+      //Create boundaries
+      function CreateRect(color,x,y,a,b,c){
+      	var geometry = new THREE.BoxGeometry( a,b,c );
+		var material = new THREE.MeshBasicMaterial( { color: color } );
+
+		mesh = new THREE.Mesh( geometry, material );
+		scene.add( mesh );
+		mesh.position.x = x;
+		mesh.position.z = y;
+      }
+      CreateRect(0xff0000,100,0,10,100,100)//Red is right
+      CreateRect(0x00ff00,-100,0,10,100,100)//green is left
+      CreateRect(0x0000ff,0,100,100,100,10)//blue is bottom
+      CreateRect(0xff00ff,0,-100,100,100,10)//pink is top of screen
     }
 
     function resize() {

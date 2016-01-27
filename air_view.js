@@ -11,6 +11,19 @@ $(function(){
 		circleArray = JSON.parse(msg);
 		Draw()
 	});
+	function DrawBounds(){
+		ctx.fillStyle = "#FF0000";//red is right
+		ctx.fillRect(800-10,0,800-10,600);
+
+		ctx.fillStyle = "#00FF00";//green is left
+		ctx.fillRect(0,0,10,600);
+
+		ctx.fillStyle = "#FF00FF";//pink is top
+		ctx.fillRect(0,0,800,10);
+
+		ctx.fillStyle = "#0000FF";//blue is bottom
+		ctx.fillRect(0,600-10,800,600-10);
+	}
 	//Clear all and draw circles
 	function Draw(){
 		//Clear screen
@@ -25,5 +38,6 @@ $(function(){
 			ctx.closePath();
 			ctx.fill();
 		}
+		DrawBounds()
 	}
 })
