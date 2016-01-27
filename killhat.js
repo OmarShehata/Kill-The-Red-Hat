@@ -1,4 +1,5 @@
-var app = require('express')();
+var express = require('express');
+var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var gameloop = require('node-gameloop');
@@ -7,11 +8,12 @@ var gameloop = require('node-gameloop');
 ///////////Game loop
 var fps = 60;
 var circleArray = []
+var numCircles = 2;
 var radius = 10;
 //The server assumes a screen size of 800x600
 function init(){
   //Initialize the circles and such
-  for(var i=0;i<10;i++){
+  for(var i=0;i<numCircles;i++){
     var circ = {};
     circ.x = Math.random() * 800;
     circ.y = Math.random() * 600;
@@ -67,6 +69,12 @@ app.get('/', function(req, res){
 app.get('/air_view.js', function(req, res){
   res.sendFile(__dirname + '/air_view.js');
 });
+app.get('/3d_view.js', function(req, res){
+  res.sendFile(__dirname + '/3d_view.js');
+});
+//Make the 3d resource available
+app.use('/textures',express.static('textures'))
+app.use('/js',express.static('js'))
 
 http.listen(2095, function(){
   console.log('listening on *:2095');

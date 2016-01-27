@@ -21,7 +21,6 @@ $(function(){
 			var c = circleArray[i];
 			ctx.fillStyle = "#FF0000";
 			ctx.beginPath();
-			console.log(c.x)
 			ctx.arc(c.x, c.y, 10, 0, Math.PI*2, true); 
 			ctx.closePath();
 			ctx.fill();
