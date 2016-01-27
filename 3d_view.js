@@ -25,8 +25,8 @@ $(function(){
     	for(var i=0;i<circleArray.length;i++){
     		var circle = circleArray[i]
     		var geometry = new THREE.SphereGeometry( 5, 32, 32 );
-    		var color = 0xff0000;
-    		if(circle.type == "red") color = 0xffff00;
+    		var color = 0xffff00
+    		if(circle.type == "red") color = 0xff0000;
 			var material = new THREE.MeshBasicMaterial( {color: color} );
 			var sphere = new THREE.Mesh( geometry, material );
 			scene.add( sphere );
