@@ -1,0 +1,10 @@
+{
+  "name": "kill-the-red-hat",
+  "version": "0.0.1",
+  "description": "experimental multiplayer three.js game",
+  "dependencies": {
+    "express": "^4.10.2",
+    "socket.io": "^1.4.4",
+    "node-gameloop": "^0.1.0"
+  }
+}

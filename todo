@@ -1,0 +1,3 @@
+-Load socket.io
+-have circles moving on the server, and send their location to the clients
+-Detect if on mobile or not, load correct file
