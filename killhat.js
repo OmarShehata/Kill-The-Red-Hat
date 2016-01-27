@@ -8,7 +8,7 @@ var gameloop = require('node-gameloop');
 ///////////Game loop
 var fps = 60;
 var circleArray = []
-var numCircles = 2;
+var numCircles = 4;
 var radius = 10;
 //The server assumes a screen size of 800x600
 function init(){
